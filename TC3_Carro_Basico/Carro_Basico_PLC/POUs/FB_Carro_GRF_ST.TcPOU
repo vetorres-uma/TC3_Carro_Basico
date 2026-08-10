@@ -12,7 +12,6 @@ VAR_OUTPUT
 END_VAR
 VAR
     Estado: (E_REPOSO, E_DERECHA, E_ESPERA, E_IZQUIERDA, E_FIN);
-    EstadoAnterior: UINT;
     
     // Bloques funcionales
     FlancoPulsadorMarcha: R_TRIG;

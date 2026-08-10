@@ -1,0 +1,94 @@
+# CONFIGURACIÓN DE GITIGNORE PARA TWINCAT 3 / 4024 y 4026
+
+# ARCHIVOS TEMPORALES Y BACKUPS DEL PLC (CAPA IEC 61131-3)
+
+# Archivos de respaldo automáticos del proyecto de PLC
+*.plcproj.bak
+*.plcproj.orig
+
+# Archivos de volcado de texto de la compilación antigua y mapas de símbolos locales
+*.tpy
+*.tclrs
+
+# Archivos de código fuente compilado y librerías generadas localmente
+*.library
+*.compiled-library
+*.compileinfo
+
+# Archivos auxiliares de depuración y ensamblador del compilador TwinCAT
+*.asm
+*.core
+LineIDs.dbg
+LineIDs.dbg.bak
+
+
+# TIPOS COMPARTIDOS, C++ Y DICCIONARIO DE SÍMBOLOS (ADS / GEMELO DIGITAL)
+# Archivo .TMC: Contiene el mapa de símbolos y tipos de datos necesarios para comunicaciones ADS.
+# - Si integras software externo (Gemelo Digital, Python, Node-RED), deja la regla
+#   comentada (# *.tmc) para realizar el seguimiento del diccionario.
+# - RECOMENDACIÓN: Para evitar commits constantes por cambios de marcas de tiempo,
+#   activa la regla descomentándola (eliminar el #) y gestiona el .tmc localmente.
+*.tmc
+*.tmcRefac
+
+
+# ARCHIVOS DE CONFIGURACIÓN DEL PROYECTO GLOBAL (SYSTEM MANAGER)
+
+# Copias de seguridad automáticas de la configuración del sistema de TwinCAT
+*.tsproj.bak
+*.tsproj.b?k
+*.tsproj.orig
+*.tspproj.bak
+
+# Backups de instancias de módulos de entrada/salida (I/O) y topología de red
+*.xti.bak
+*.xti.bk?
+*.xti.orig
+
+# Archivos temporales de configuración de visualización nativa de TwinCAT
+*.xtv
+*.xtv.bak
+*.xtv.bk?
+
+
+# COMPONENTES MULTIUSER Y CONTROL DE VERSIONES INTEGRADO
+# Ignorar bases de datos y cachés si se utiliza la herramienta nativa TcGit
+**/.TcGit/
+
+
+# CARPETAS DE COMPILACIÓN, DESPLIEGUE Y PAQUETES (COMPATIBLE 4026)
+
+# Exclusión global de directorios de compilación, librerías descargadas y boot
+**/_Boot/
+**/_CompileInfo/
+**/_Libraries/
+**/_ModuleInstall/
+**/_Deployment/
+**/_Repository/
+
+# Gestión de paquetes modernos (TwinCAT 4026 / Package Manager y NuGet)
+# Evita subir las librerías modulares descargadas automáticamente por VS2022
+**/_Packages/
+**/.nuget/
+
+
+# ENTORNO DE VISUAL STUDIO (SHELL), INTERFAZ DE USUARIO Y FILTROS
+
+# Caché global, bases de datos de búsqueda de código y datos de sesión de VS
+**/.vs/
+
+# Configuraciones específicas del usuario (Pestañas abiertas, zoom, marcadores)
+# ¡Crucial ignorarlos para evitar falsos modificados tras hacer clics en el entorno!
+*.~u
+*.project.~u
+*.suo
+*.user
+*.userprefs
+
+# Carpetas de salida de compilación de binarios genéricos de Visual Studio
+obj/
+bin/
+
+# Archivos automáticos de TwinCAT para gestionar filtros visuales en el Solution Explorer
+# Evita que se ensucie el árbol de cambios de Git con directivas de ocultación locales
+*.noprjfile

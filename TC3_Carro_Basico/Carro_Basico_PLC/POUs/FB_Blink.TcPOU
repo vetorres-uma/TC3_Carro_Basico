@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.16">
+  <POU Name="FB_Blink" Id="{41849629-729e-40a2-8343-0ed3de693c45}" SpecialFunc="None">
+    <Declaration><![CDATA[// Square wave oscillator
+FUNCTION_BLOCK FB_Blink
+VAR_INPUT
+    Enable: BOOL := TRUE; // Enables oscillator
+    TimeOn: TIME := T#500MS; // Duration of HIGH phase
+    TimeOff: TIME := T#500MS; // Duration of LOW phase
+END_VAR
+VAR_OUTPUT
+    Q: BOOL; // Oscillating output
+END_VAR
+VAR
+    Timer: TON;
+    ToggleEdge: R_TRIG;
+    PhaseDuration: TIME;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Guard Clause: deterministic reset
+IF NOT Enable THEN
+    Q := FALSE;
+    Timer(IN := FALSE);
+    ToggleEdge(CLK := FALSE);
+    RETURN;
+END_IF;
+
+// Select current phase duration
+IF Q THEN
+    PhaseDuration := TimeOn;
+ELSE
+    PhaseDuration := TimeOff;
+END_IF;
+
+// Execute Timer
+Timer(
+    IN := TRUE, 
+    PT := PhaseDuration
+);
+
+// Toggle logic on timer completion
+ToggleEdge(CLK := Timer.Q);
+
+// State toggle on each timer completion
+IF ToggleEdge.Q THEN
+    Q := NOT Q;
+    // Reset timer to restart on next scan
+    Timer(IN := FALSE);
+END_IF;
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Blink">
+      <LineId Id="3" Count="29" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

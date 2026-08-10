@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.16">
+  <POU Name="FB_Carro_GRF_ST" Id="{f6c9d435-25ed-4b3b-a201-c9bc5c005878}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Carro_GRF_ST
+VAR_INPUT
+    ManiobrasTotales: UINT := 2;
+    TiempoEspera: TIME := T#2S;
+END_VAR
+VAR_OUTPUT
+    ManiobrasPendientes: UINT;
+    TiempoPendiente: TIME;
+END_VAR
+VAR
+    Estado: (E_REPOSO, E_DERECHA, E_ESPERA, E_IZQUIERDA, E_FIN);
+    EstadoAnterior: UINT;
+    
+    // Bloques funcionales
+    FlancoPulsadorMarcha: R_TRIG;
+    Intermitencia: FB_Blink;
+    TemporizadorEspera: TON;
+    
+    // Entradas
+    i_PulsadorMarcha AT %I*: BOOL;
+    i_FinalCarreraIzquierda AT %I*: BOOL := TRUE;
+    i_FinalCarreraDerecha AT %I*: BOOL;
+    
+    // Salidas
+    o_MarchaIzquierda AT %I*: BOOL;
+    o_MarchaDerecha AT %I*: BOOL;
+    o_LamparaMarcha AT %I*: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// FUNCION DE ESTADO
+FlancoPulsadorMarcha(CLK := i_PulsadorMarcha);
+Intermitencia();
+TemporizadorEspera(IN := (Estado = E_ESPERA), PT := TiempoEspera);
+
+CASE Estado OF
+    E_REPOSO:
+        IF i_FinalCarreraIzquierda AND FlancoPulsadorMarcha.Q THEN
+            ManiobrasPendientes := ManiobrasTotales;
+            Estado := E_DERECHA;
+		END_IF;
+    E_DERECHA:
+        IF i_FinalCarreraDerecha THEN            
+            Estado := E_ESPERA;
+		END_IF;
+    E_ESPERA:
+        IF (TiempoEspera >= TemporizadorEspera.ET) THEN
+            TiempoPendiente := TiempoEspera - TemporizadorEspera.ET;
+        END_IF;
+
+        IF TemporizadorEspera.Q  THEN
+            Estado := E_IZQUIERDA;
+		END_IF;
+    E_IZQUIERDA:
+        IF i_FinalCarreraIzquierda THEN
+            IF (ManiobrasPendientes > 0) THEN 
+                ManiobrasPendientes := ManiobrasPendientes - 1;
+            END_IF;
+                
+            Estado := E_FIN;
+		END_IF;
+    E_FIN:
+        IF (ManiobrasPendientes = 0) THEN
+            Estado := E_REPOSO;
+        ELSIF (ManiobrasPendientes > 0) THEN
+            Estado := E_DERECHA;
+		END_IF;
+END_CASE;
+
+// FUNCION DE SALIDA
+o_MarchaDerecha := (Estado = E_DERECHA);
+o_MarchaIzquierda := (Estado = E_IZQUIERDA);
+o_LamparaMarcha := ((Estado = E_REPOSO) AND Intermitencia.Q)
+    OR (Estado = E_DERECHA)
+    OR (Estado = E_ESPERA)
+    OR (Estado = E_IZQUIERDA)
+    OR (Estado = E_FIN);
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Carro_GRF_ST">
+      <LineId Id="609" Count="1" />
+      <LineId Id="612" Count="0" />
+      <LineId Id="691" Count="0" />
+      <LineId Id="613" Count="42" />
+      <LineId Id="71" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -10,7 +10,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{248A6525-003A-4DC5-9902-1074075D8006}" Name="Carro_Basico_PLC" PrjFilePath="Carro_Basico_PLC\Carro_Basico_PLC.plcproj" TmcFilePath="Carro_Basico_PLC\Carro_Basico_PLC.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Carro_Basico_PLC\Carro_Basico_PLC.tmc" TmcHash="{EAC566F3-75CB-EA18-D58A-7A0FDAADD169}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Carro_Basico_PLC\Carro_Basico_PLC.tmc" TmcHash="{C20FB0F9-B0F7-69DD-B3E9-32B1203949C4}">
 					<Name>Carro_Basico_PLC Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">

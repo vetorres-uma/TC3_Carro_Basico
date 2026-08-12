@@ -2,6 +2,7 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.16">
   <POU Name="FB_Carro_GRF_ST" Id="{f6c9d435-25ed-4b3b-a201-c9bc5c005878}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Carro_GRF_ST
+// Transcripción del grafcet (GRF -> ST)
 VAR_INPUT
     ManiobrasTotales: UINT := 2;
     TiempoEspera: TIME := T#2S;

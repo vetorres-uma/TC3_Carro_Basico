@@ -2,6 +2,7 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.16">
   <POU Name="FB_Carro_GRF_SFC" Id="{22d700f1-c096-431a-babb-bbf0219d1b28}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Carro_GRF_SFC
+// Transcripción del grafcet (GRF -> SFC)
 VAR_INPUT
     ManiobrasTotales: UINT := 2;
     TiempoEspera: TIME := T#2S;

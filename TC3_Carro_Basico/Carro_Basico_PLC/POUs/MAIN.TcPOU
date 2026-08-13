@@ -3,9 +3,10 @@
   <POU Name="MAIN" Id="{7c37925b-362c-4ebf-880c-ca7e46ea3b81}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-    Carro: FB_Carro_DRC_LD;
+    // Carro: FB_Carro_DRC_LD;
     // Carro: FB_Carro_GRF_SFC;
     // Carro: FB_Carro_GRF_ST;
+    Carro: FB_Carro_GRF_LD_M;
 END_VAR
 ]]></Declaration>
     <Implementation>

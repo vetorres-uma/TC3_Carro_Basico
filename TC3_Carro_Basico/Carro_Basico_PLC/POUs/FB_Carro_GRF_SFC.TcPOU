@@ -1909,7 +1909,7 @@ END_VAR
     </Action>
     <Action Name="a_LamparaMarcha" Id="{6e036b04-25c8-412d-a86f-80391637dfaf}">
       <Implementation>
-        <ST><![CDATA[Intermitencia();
+        <ST><![CDATA[Intermitencia(Enable := S0.x);
 
 o_LamparaMarcha := (S0.x AND Intermitencia.Q) OR S1.x OR S2.x OR S3.x OR S4.x;
 ]]></ST>

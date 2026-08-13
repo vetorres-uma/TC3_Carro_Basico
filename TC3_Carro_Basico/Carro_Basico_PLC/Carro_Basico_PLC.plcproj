@@ -30,7 +30,7 @@
     <Compile Include="POUs\FB_Carro_DRC_LD.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_Carro_GRF_LD_M.TcPOU">
+    <Compile Include="POUs\FB_Carro_GRF_LD.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FB_Carro_GRF_SFC.TcPOU">

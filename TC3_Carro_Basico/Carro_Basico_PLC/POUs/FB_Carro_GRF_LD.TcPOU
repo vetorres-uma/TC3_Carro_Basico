@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.16">
-  <POU Name="FB_Carro_GRF_LD_M" Id="{49850c7a-a872-4ceb-b1dc-23d08810d361}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_Carro_GRF_LD_M
+  <POU Name="FB_Carro_GRF_LD" Id="{49850c7a-a872-4ceb-b1dc-23d08810d361}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Carro_GRF_LD
 // Transcripción del grafcet (GRF -> LD) [Usando células eléctricas de memoria]
 VAR_INPUT
     ManiobrasTotales: UINT := 2;

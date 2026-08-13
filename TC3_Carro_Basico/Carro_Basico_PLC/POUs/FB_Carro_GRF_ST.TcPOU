@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.16">
-  <POU Name="FB_Carro_GRF_ST" Id="{f6c9d435-25ed-4b3b-a201-c9bc5c005878}" SpecialFunc="None">
+  <POU Name="FB_Carro_GRF_ST" Id="{7cbe62ee-98a6-430b-8118-4667e44a361e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Carro_GRF_ST
 // Transcripción del grafcet (GRF -> ST)
 VAR_INPUT
@@ -31,15 +31,20 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[// FUNCION DE ESTADO
-FlancoPulsadorMarcha(CLK := i_PulsadorMarcha);
-Intermitencia();
+      <ST><![CDATA[// BLOQUES FUNCIONALES
+Intermitencia(Enable := (Estado = E_REPOSO));
 TemporizadorEspera(IN := (Estado = E_ESPERA), PT := TiempoEspera);
 
+// FUNCION DE ESTADO
 CASE Estado OF
     E_REPOSO:
+        // Acción principal
+        FlancoPulsadorMarcha(CLK := i_PulsadorMarcha);
+        
         IF i_FinalCarreraIzquierda AND FlancoPulsadorMarcha.Q THEN
+            // Acción de salida
             ManiobrasPendientes := ManiobrasTotales;
+            
             Estado := E_DERECHA;
 		END_IF;
     E_DERECHA:
@@ -47,6 +52,7 @@ CASE Estado OF
             Estado := E_ESPERA;
 		END_IF;
     E_ESPERA:
+        // Acción principal
         IF (TiempoEspera >= TemporizadorEspera.ET) THEN
             TiempoPendiente := TiempoEspera - TemporizadorEspera.ET;
         END_IF;
@@ -56,6 +62,7 @@ CASE Estado OF
 		END_IF;
     E_IZQUIERDA:
         IF i_FinalCarreraIzquierda THEN
+            // Acción de entrada del siguiente estado
             IF (ManiobrasPendientes > 0) THEN 
                 ManiobrasPendientes := ManiobrasPendientes - 1;
             END_IF;
@@ -73,18 +80,27 @@ END_CASE;
 // FUNCION DE SALIDA
 o_MarchaDerecha := (Estado = E_DERECHA);
 o_MarchaIzquierda := (Estado = E_IZQUIERDA);
-o_LamparaMarcha := ((Estado = E_REPOSO) AND Intermitencia.Q)
-    OR (Estado = E_DERECHA)
-    OR (Estado = E_ESPERA)
-    OR (Estado = E_IZQUIERDA)
-    OR (Estado = E_FIN);
+o_LamparaMarcha := (Estado <> E_REPOSO) OR Intermitencia.Q;
 ]]></ST>
     </Implementation>
     <LineIds Name="FB_Carro_GRF_ST">
-      <LineId Id="609" Count="1" />
-      <LineId Id="612" Count="0" />
+      <LineId Id="609" Count="0" />
+      <LineId Id="720" Count="0" />
       <LineId Id="691" Count="0" />
-      <LineId Id="613" Count="42" />
+      <LineId Id="613" Count="1" />
+      <LineId Id="751" Count="0" />
+      <LineId Id="615" Count="0" />
+      <LineId Id="752" Count="0" />
+      <LineId Id="721" Count="1" />
+      <LineId Id="616" Count="0" />
+      <LineId Id="753" Count="0" />
+      <LineId Id="617" Count="0" />
+      <LineId Id="754" Count="0" />
+      <LineId Id="618" Count="6" />
+      <LineId Id="755" Count="0" />
+      <LineId Id="625" Count="8" />
+      <LineId Id="757" Count="0" />
+      <LineId Id="634" Count="17" />
       <LineId Id="71" Count="0" />
     </LineIds>
   </POU>

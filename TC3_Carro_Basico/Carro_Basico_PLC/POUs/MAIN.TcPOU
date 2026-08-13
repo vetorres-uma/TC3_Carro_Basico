@@ -5,8 +5,8 @@
 VAR
     // Carro: FB_Carro_DRC_LD;
     // Carro: FB_Carro_GRF_SFC;
-    // Carro: FB_Carro_GRF_ST;
-    Carro: FB_Carro_GRF_LD_M;
+    Carro: FB_Carro_GRF_ST;
+    // Carro: FB_Carro_GRF_LD;
 END_VAR
 ]]></Declaration>
     <Implementation>

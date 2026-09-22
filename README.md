@@ -2,7 +2,7 @@
 
 ## 📝 Descripción Funcional
 
-El proyecto **Carro Básico** resuelve el clásico problema de automatización conocido como **el carro va y viene**, que consiste en un móvil que se desplaza longitudinalmente entre los dos extremos (izquierdo y derecho) de un tramo de vía.
+El proyecto **Carro Básico** resuelve el clásico problema de automatización conocido como **«el carro va y viene»**, que consiste en un móvil que se desplaza longitudinalmente entre los dos extremos (izquierdo y derecho) de un tramo de vía.
 
 <p align="center">
   <img src="docs/assets/images/Carro_Basico_Esquematico.png" alt="Esquematico del Carro Básico" />
@@ -12,7 +12,7 @@ El proyecto **Carro Básico** resuelve el clásico problema de automatización c
 
 ### Parte Operativa
 
-- Un **motor** con dos señales de mando (izquierda y derecha).
+- Un **motor** con dos señales de mando para la marcha (marcha y marcha).
 - Un par de **sensores finales de carrera** (izquierdo y derecho).
 
  ### Parte de Relación
@@ -26,9 +26,9 @@ El proyecto **Carro Básico** resuelve el clásico problema de automatización c
 
 El funcionamiento del carro básico es como sigue.
 
-1. El carro se pone en marcha hacia la derecha cuando se acciona el pulsador de marcha. 
-1. Cuando el carro alcanza el final de carrera derecha invierte el sentido de la marcha.
-1. El carro se deteine al alcanzar, de nuevo,  el final de carrera izquierda (posición inicial).
+1.  El carro se pone en marcha hacia la derecha cuando se acciona el pulsador de marcha.
+2.  Cuando el carro alcanza el final de carrera derecha invierte el sentido de la marcha.
+3.  El carro se detiene al alcanzar, de nuevo, el final de carrera izquierda.
 
 - **Condición inicial**: carro detenido sobre el final de carrera izquierda.
 
@@ -45,30 +45,14 @@ El proyecto contempla diferentes variantes de complejidad progresiva:
 
 | Nombre | Tipo | Origen | Descripción |
 | :--- | :--- | :--- | :--- |
-| `PM` | `BOOL` | Input | Pulsador de Marcha |
-| `FCI` | `BOOL` | Input | Final de Carrera Izquierda |
-| `FCD` | `BOOL` | Input | Final de Carrera Derecha |
-| `LM` | `BOOL` | Output | Lampara de Marcha |
-| `MI` | `BOOL` | Output | Marcha Izquierda |
-| `MD` | `BOOL` | Output | Marcha Derecha |
+| `PM` | `BOOL` | Entrada | Pulsador de Marcha |
+| `FCI` | `BOOL` | Entrada | Final de Carrera Izquierda |
+| `FCD` | `BOOL` | Entrada | Final de Carrera Derecha |
+| `LM` | `BOOL` | Salida | Lámpara de Marcha |
+| `MI` | `BOOL` | Salida | Marcha Izquierda |
+| `MD` | `BOOL` | Salida | Marcha Derecha |
 
 ---
-
-## 📂 Estructura simplificada del Repositorio
-
-```text
-TC3_Carro_Basico/
-├── docs/
-|   ├── diagrams/
-│       ├── Carro_Basico_DRC.pdf   <-- Diagrama de Relés y Contactos (PDF)
-│       └── Carro_Basico_GRF.pdf   <-- Diagrama Grafcet (PDF)
-└── src/
-    ├── TC3_Carro_Basico.sln       <-- Solución de Visual Studio (TwinCAT XAE)
-    └── TC3_Carro_Basico/          <-- Proyecto TwinCAT
-        └── Carro_Basico_PLC/      <-- Proyecto PLC
-```
-
---- 
 
 ## 📄 Especificación funcional
 
@@ -76,6 +60,22 @@ Las siguientes especificaciones funcionales describen el comportamiento del carr
 
 - [Diagrama de relés y contactos (PDF)](docs/diagrams/Carro_Basico_DRC.pdf)
 - [Diagrama grafcet (PDF)](docs/diagrams/Carro_Basico_GRF.pdf)
+
+--- 
+
+## 📂 Estructura simplificada del Repositorio
+
+```text
+TC3_Carro_Basico/
+├── docs/
+|   └── diagrams/
+│       ├── Carro_Basico_DRC.pdf   <-- Diagrama de Relés y Contactos (PDF)
+│       └── Carro_Basico_GRF.pdf   <-- Diagrama Grafcet (PDF)
+└── src/
+    ├── TC3_Carro_Basico.sln       <-- Solución de Visual Studio (TwinCAT XAE)
+    └── TC3_Carro_Basico/          <-- Proyecto TwinCAT
+        └── Carro_Basico_PLC/      <-- Proyecto PLC
+```
 
 ---
 

@@ -10,10 +10,10 @@ El proyecto **Carro Básico** resuelve el clásico problema de automatización c
 
 ## 🧩 Elementos constituyentes
 
-### Parte Opertiva
+### Parte Operativa
 
-- Un **motor** con dos señales de mando (izquierda y derecha)
-- Un par de **sensores finales de carrera** (izquierdo y derecho)
+- Un **motor** con dos señales de mando (izquierda y derecha).
+- Un par de **sensores finales de carrera** (izquierdo y derecho).
 
  ### Parte de Relación
  
@@ -72,16 +72,16 @@ TC3_Carro_Basico/
 
 ## 📄 Especificación funcional
 
-Las siguientes especificaciones funcionales describen el comportamiento del carro (lógica de control) de una manera precisa utilizando los diagramas de relés y contactos y el lenguaje GRAFCET.
+Las siguientes especificaciones funcionales describen el comportamiento del carro (lógica de control) de una manera precisa utilizando los **Diagramas de Relés y Contactos** y el lenguaje **GRAFCET**.
 
 - [Diagrama de relés y contactos (PDF)](docs/diagrams/Carro_Basico_DRC.pdf)
 - [Diagrama grafcet (PDF)](docs/diagrams/Carro_Basico_GRF.pdf)
 
 ---
 
-## 💻 Código
+## 💻 Implementación
 
-Implementa el funcionamiento del carro va y viene en sus diferentes modalidades (básico, pulsado, temporizado, limitado y señalizado), empleando diferentes «lenguajes» de especificación (diagramas de relés y diagramas grafcet) y diferentes lenguajes de programación de la norma IEC 61131-3 (LD, SFC y ST).
+Se implementa el funcionamiento del carro va y viene (pulsado, temporizado, limitado y señalizado), a partir de sus especificaciones (diagramas de relés y diagramas grafcet) utilizando diferentes lenguajes de programación de la norma IEC 61131-3: *Diagrama Ladder* (LD), *Sequential Function Chart* (SFC) y *Structured Text* (ST).
 
 - DRC → [LD]
 - GRF → [SFC / ST / LD]
